@@ -49,7 +49,8 @@ public class EqualControl implements ActionListener {
     }
 
     private boolean equalApply(String str) {
-        if(str.isEmpty() || str.equals(".") || serv.lastResult().equals("null")) return false;
+        if(str.isEmpty() || str.equals(".") || serv.lastResult().equals("null") ||
+                str.substring(str.length()-1, str.length()).equals(".")) return false;
         return true;
     }
 
