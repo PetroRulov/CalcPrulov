@@ -14,12 +14,14 @@ public class Service {
     private Calculator calculator;
     private List<String> operands;
     private double lastResult;
+    private String memoryNumber;
 
     public Service(Calculator calculator){
 
         this.calculator = calculator;
         operands = new ArrayList<>();
         lastResult = 0.0;
+        memoryNumber = null;
     }
 
     public void addFirstOperandToList(String str){
@@ -48,4 +50,15 @@ public class Service {
             return "null";
         }
     }
+
+    public void setMemoryNumber(double d){
+        memoryNumber = String.valueOf(d);
+    }
+
+    public void setMemoryNumberNull(){
+        memoryNumber = null;
+    }
+
+    public String getMemoryNumber(){return memoryNumber;}
+
 }

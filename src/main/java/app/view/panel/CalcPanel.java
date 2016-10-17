@@ -21,15 +21,18 @@ public class CalcPanel {
     private JPanel calcPanel;
     private java.util.List<JButton> digitButtons;
     private java.util.List<JButton> symbolButtons;
+    private Color ceC;
+    private Color greenColor;
 
     //buttons
+    private JTextArea writer;
     private JTextField window;
     private JButton bS;
-    private JButton mM;
-    private JButton mP;
-    private JButton mC;
-    private JButton mR;
-    private JButton ceC;
+    private JButton mSet;
+    private JButton ce;
+    private JTextField memory;
+    private JButton mRecall;
+    private JButton mClear;
     private JButton onAC;
     private JButton m1;
     private JButton m4;
@@ -57,6 +60,8 @@ public class CalcPanel {
         this.serv = serv;
         digitButtons = new ArrayList<>();
         symbolButtons = new ArrayList<>();
+        this.ceC = new Color(180,0,50);
+        this.greenColor = new Color(0, 210, 0);
         this.calcPanel = createCalcPanel();
     }
 
@@ -68,8 +73,8 @@ public class CalcPanel {
         calcPanel.setFont(new Font("Garamond", Font.BOLD, 20));
 
         Border matte = BorderFactory.createMatteBorder(3, 3, 3, 3, Color.BLUE);
-        Border titled = BorderFactory.createTitledBorder(matte, "CALCULATOR Model J-PEVLAR V.2.01, © Petro Rulov Laboratory", TitledBorder.CENTER,
-                TitledBorder.CENTER, new Font("Garamond", Font.BOLD, 10), Color.ORANGE);
+        String head = "CALCULATOR Model J-PEVLAR V.2.01, © Petro Rulov Laboratory";
+        Border titled = BorderFactory.createTitledBorder(matte, head, TitledBorder.CENTER, TitledBorder.CENTER, new Font("Garamond", Font.BOLD, 10), Color.ORANGE);
         calcPanel.setBorder(titled);
 
         URL imageURL = getClass().getClassLoader().getResource("calcaverage.png");
@@ -77,13 +82,20 @@ public class CalcPanel {
         JLabel picture = new JLabel(icon);
         picture.setFont(picture.getFont().deriveFont(Font.ITALIC));
         picture.setHorizontalAlignment(JLabel.LEFT);
-        calcPanel.add(picture, new GridBagConstraints(0, 0, 0, 1, 0, 0, GridBagConstraints.PAGE_START, GridBagConstraints.BOTH, new Insets(0, 10, 0, 0), 0, 0));
+        calcPanel.add(picture, new GridBagConstraints(0, 0, 0, 1, 0, 0, GridBagConstraints.PAGE_START, GridBagConstraints.BOTH, new Insets(0, 20, 0, 0), 0, 0));
+
+        writer = new JTextArea();
+        writer.setFont(new Font("Arial", Font.PLAIN, 20));
+        writer.setForeground(Color.DARK_GRAY);
+        writer.setEditable(false);
+        calcPanel.add(writer, new GridBagConstraints(1, 0, 5, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 20), 0, 0));
 
         window = new JTextField();
         window.setFont(new Font("Garamond", Font.BOLD, 36));
         window.setForeground(Color.BLUE);
         window.setHorizontalAlignment(JTextField.RIGHT);
-        calcPanel.add(window, new GridBagConstraints(1, 0, 5, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 10), 0, 0));
+        window.setEditable(false);
+        calcPanel.add(window, new GridBagConstraints(0, 1, 6, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(10, 20, 0, 20), 0, 0));
 
         bS = new JButton("Backspace");
         bS.setFont(new Font("Garamond", Font.BOLD, 20));
@@ -91,30 +103,38 @@ public class CalcPanel {
         calcPanel.add(bS, new GridBagConstraints(0, 2, 2, 1, 50, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), 0, 0));
         bS.addActionListener(new BackSpaceControl(calculator, serv, this));
 
-        mM = new JButton("MS");
-        mM.setFont(new Font("Garamond", Font.BOLD, 20));
-        mM.setForeground(Color.BLACK);
-        calcPanel.add(mM, new GridBagConstraints(2, 2, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), 0, 0));
+        mSet = new JButton("MSet");
+        mSet.setFont(new Font("Garamond", Font.BOLD, 20));
+        mSet.setForeground(Color.BLUE);
+        calcPanel.add(mSet, new GridBagConstraints(2, 2, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), 0, 0));
+        mSet.addActionListener(new MSetControl(calculator, serv, this));
 
-        mP = new JButton("M+");
-        mP.setFont(new Font("Garamond", Font.BOLD, 20));
-        mP.setForeground(Color.BLACK);
-        calcPanel.add(mP, new GridBagConstraints(3, 2, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), 0, 0));
+        ce = new JButton("CE");
+        ce.setFont(new Font("Garamond", Font.BOLD, 20));
+        ce.setForeground(Color.RED);
+        ce.setBackground(Color.ORANGE);
+        calcPanel.add(ce, new GridBagConstraints(3, 2, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), 0, 0));
+        ce.addActionListener(new CEControl(serv, this));
 
-        mC = new JButton("MC");
-        mC.setFont(new Font("Garamond", Font.BOLD, 20));
-        mC.setForeground(Color.BLACK);
-        calcPanel.add(mC, new GridBagConstraints(0, 3, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
+        memory = new JTextField();
+        memory.setFont(new Font("Garamond", Font.BOLD, 15));
+        memory.setForeground(greenColor);
+        memory.setHorizontalAlignment(JTextField.CENTER);
+        memory.setEditable(false);
+        memory.setText("M: Empty");
+        calcPanel.add(memory, new GridBagConstraints(0, 3, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
 
-        mR = new JButton("0>>00");
-        mR.setFont(new Font("Garamond", Font.BOLD, 20));
-        mR.setForeground(Color.BLACK);
-        calcPanel.add(mR, new GridBagConstraints(0, 4, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
+        mRecall = new JButton("MRecall");
+        mRecall.setFont(new Font("Garamond", Font.BOLD, 20));
+        mRecall.setForeground(Color.BLACK);
+        calcPanel.add(mRecall, new GridBagConstraints(0, 4, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
+        mRecall.addActionListener(new MRecallControl(calculator, serv, this));
 
-        ceC = new JButton("CE/C");
-        ceC.setFont(new Font("Garamond", Font.BOLD, 20));
-        ceC.setForeground(Color.BLACK);
-        calcPanel.add(ceC, new GridBagConstraints(0, 5, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
+        mClear = new JButton("MClear");
+        mClear.setFont(new Font("Garamond", Font.BOLD, 20));
+        mClear.setForeground(Color.BLACK);
+        calcPanel.add(mClear, new GridBagConstraints(0, 5, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
+        mClear.addActionListener(new MClearControl(calculator, serv, this));
 
         onAC = new JButton("ON/AC");
         onAC.setFont(new Font("Garamond", Font.BOLD, 20));
@@ -275,6 +295,32 @@ public class CalcPanel {
 
     public String getWindowText(){
         return getWindow().getText();
+    }
+
+    private JTextArea getWriter() {
+        return writer;
+    }
+
+    public void setWriterText(String str){
+        getWriter().setText(str);
+    }
+
+    public String getWriterText(){
+        return getWriter().getText();
+    }
+
+    private JTextField getMemory() {
+        return memory;
+    }
+
+    public void setMemory(String str){
+        getMemory().setForeground(ceC);
+        getMemory().setText("M: " + str);
+    }
+
+    public void clearMemory(){
+        getMemory().setForeground(greenColor);
+        getMemory().setText("M: Empty ");
     }
 
     private JButton getClickedButton(JButton button){

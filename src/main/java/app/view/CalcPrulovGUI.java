@@ -32,12 +32,13 @@ public class CalcPrulovGUI {
         frame = new JFrame(head);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(50, 50);
-        frame.setMinimumSize(new Dimension(600, 375));
+        frame.setMinimumSize(new Dimension(600, 425));
 
         frame.setJMenuBar(createMenuBar());
 
         panel = cp.getCalcPanel();
         frame.getContentPane().add(panel);
+
 
         frame.pack();
         frame.setVisible(true);

@@ -84,9 +84,6 @@ public class Calculator {
         return result;
     }
 
-
-
-
     public double calcPercentage(String str, String first, String second){
 
         double result = 0.0;

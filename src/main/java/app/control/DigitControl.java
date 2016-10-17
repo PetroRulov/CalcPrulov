@@ -27,5 +27,6 @@ public class DigitControl implements ActionListener {
         buttonText = cp.getButtonText(clicked);
         displayed = cp.getWindowText();
         cp.setDisplayedValue(displayed + buttonText);
+        cp.setWriterText(displayed + buttonText);
     }
 }

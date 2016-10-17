@@ -18,6 +18,7 @@ public class EqualControl implements ActionListener {
     private CalcPanel cp;
     private String displayed;
     private String secondOperand;
+    private JButton clicked;
 
     public EqualControl(Calculator calculator, Service serv, CalcPanel cp) {
         this.calculator = calculator;
@@ -28,7 +29,10 @@ public class EqualControl implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        clicked = (JButton) e.getSource();
         displayed = cp.getWindowText();
+        cp.setWriterText(displayed + clicked.getText());
+
         if (equalApply(displayed)) {
             if(!serv.lastResult().substring(0, 1).equals("-") || serv.lastResult().substring(0, 1).equals("-") &&
                     !calculator.getSymbol(displayed).equals("-")){                                // if first > 0 || if first < 0 and operant not "-"
@@ -41,6 +45,7 @@ public class EqualControl implements ActionListener {
             double res = calculator.calculate(calculator.getSymbol(displayed), serv.lastResult(), secondOperand);
             String result = String.valueOf(res);
             cp.setDisplayedValue(result);
+            cp.setWriterText(displayed + clicked.getText() + result);
             serv.clearOperands();
             serv.addFirstOperandToList(result);
         }else {

@@ -35,6 +35,7 @@ public class OperationsControl implements ActionListener {
             clicked = (JButton) e.getSource();
             buttonText = cp.getClickedOperationButtonText(clicked);
             cp.setDisplayedValue(displayed + buttonText);
+            cp.setWriterText(displayed + buttonText);
             displayed = cp.getWindowText();
             firstOperand = calculator.getFirstDouble(displayed);
             serv.addFirstOperandToList(firstOperand);

@@ -32,17 +32,17 @@ public class MinusControl implements ActionListener {
 
         displayed = cp.getWindowText();
         if (minusApply(displayed)) {
+            clicked = (JButton) e.getSource();
+            buttonText = clicked.getText();
+            cp.setDisplayedValue(displayed + buttonText);
+            cp.setWriterText(displayed + buttonText);
+
             if(!displayed.isEmpty()){
-                clicked = (JButton) e.getSource();
-                buttonText = clicked.getText();
-                cp.setDisplayedValue(displayed + buttonText);
                 displayed = cp.getWindowText();
                 firstOperand = calculator.getFirstDouble(displayed);
                 serv.addFirstOperandToList(firstOperand);
             }else {
-                clicked = (JButton) e.getSource();
-                buttonText = clicked.getText();
-                cp.setDisplayedValue(displayed + buttonText);
+                return;
             }
         }else {
             return;
