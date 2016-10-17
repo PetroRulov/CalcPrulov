@@ -89,7 +89,7 @@ public class CalcPanel {
         bS.setFont(new Font("Garamond", Font.BOLD, 20));
         bS.setForeground(Color.BLACK);
         calcPanel.add(bS, new GridBagConstraints(0, 2, 2, 1, 50, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), 0, 0));
-        bS.addActionListener(new BackSpaceControl(this));
+        bS.addActionListener(new BackSpaceControl(calculator, serv, this));
 
         mM = new JButton("MS");
         mM.setFont(new Font("Garamond", Font.BOLD, 20));
@@ -227,7 +227,8 @@ public class CalcPanel {
         perc.setFont(new Font("Garamond", Font.BOLD, 20));
         perc.setForeground(Color.BLACK);
         calcPanel.add(perc, new GridBagConstraints(5, 3, 1, 1, 1, 0, GridBagConstraints.LAST_LINE_END, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
-        perc.addActionListener(new OperationsControl(calculator, serv, this));
+        //perc.addActionListener(new OperationsControl(calculator, serv, this));
+        perc.addActionListener(new PercentageControl(calculator, serv, this));
 
         minus = new JButton("-");
         minus.setFont(new Font("Garamond", Font.BOLD, 20));
@@ -259,7 +260,7 @@ public class CalcPanel {
         symbolButtons.add(mult);
         symbolButtons.add(divid);
         symbolButtons.add(sqrt);
-        symbolButtons.add(perc);
+        //symbolButtons.add(perc);
 
         return calcPanel;
     }

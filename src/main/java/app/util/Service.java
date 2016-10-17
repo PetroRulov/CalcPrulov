@@ -2,6 +2,7 @@ package app.util;
 
 import app.model.Calculator;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,13 @@ public class Service {
 
     public void addFirstOperandToList(String str){
         operands.add(str);
-        lastResult = Double.parseDouble(operands.get(operands.size() - 1));
+        try{
+            lastResult = Double.parseDouble(operands.get(operands.size() - 1));
+        }catch (NumberFormatException nfe){
+            JOptionPane.showConfirmDialog(null, "ERROR: Too much sign \"-\"! Please, use BACKSPACE and try again!",
+                    "Error message", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
     }
 
     public void clearOperands() {

@@ -19,15 +19,16 @@ public class Calculator {
     }
 
     public String getSecondDouble(String jtfDisplayed){
-        int a = getOperIndex(jtfDisplayed);
+        int a = getSymbolIndex(jtfDisplayed);
         if(a > 0){
+            System.out.println(jtfDisplayed.substring(a + 1, jtfDisplayed.length()));
             return jtfDisplayed.substring(a + 1, jtfDisplayed.length());
         }else{
             return "0.0";
         }
     }
 
-    private int getOperIndex(String jtfDisplayed){
+    private int getSymbolIndex(String jtfDisplayed){
         int result = 0;
         for (int i = 0; i < oper.length; i++) {
             if(jtfDisplayed.substring(1, jtfDisplayed.length()).contains(oper[i])){

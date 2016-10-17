@@ -45,8 +45,8 @@ public class OperationsControl implements ActionListener {
 
     private boolean operationApply(String str) {
         if(str.isEmpty() || str.equals(".") ) return false;
-        char signs[] = new char[]{'√', '%', '+', '*', '/'};
-        char strArr[] = str.toCharArray();
+        char signs[] = new char[]{'√', '%', '+', '-', '*', '/'};
+        char strArr[] = str.substring(1, str.length()).toCharArray();
         int count = 0;
         for (int i = 0; i < strArr.length; i++) {
             for (char sign : signs) {

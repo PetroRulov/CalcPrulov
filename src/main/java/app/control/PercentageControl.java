@@ -9,9 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by prulov on 16.10.2016.
+ * Created by prulov on 17.10.2016.
  */
-public class EqualControl implements ActionListener {
+public class PercentageControl implements ActionListener {
 
     private Calculator calculator;
     private Service serv;
@@ -19,7 +19,7 @@ public class EqualControl implements ActionListener {
     private String displayed;
     private String secondOperand;
 
-    public EqualControl(Calculator calculator, Service serv, CalcPanel cp) {
+    public PercentageControl(Calculator calculator, Service serv, CalcPanel cp){
         this.calculator = calculator;
         this.serv = serv;
         this.cp = cp;
@@ -27,37 +27,29 @@ public class EqualControl implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         displayed = cp.getWindowText();
-        if (equalApply(displayed)) {
-            if(!serv.lastResult().substring(0, 1).equals("-") || serv.lastResult().substring(0, 1).equals("-") &&
-                    !calculator.getSymbol(displayed).equals("-")){                                // if first > 0 || if first < 0 and operant not "-"
-                secondOperand = calculator.getSecondDouble(displayed);
-            }else if(serv.lastResult().substring(0, 1).equals("-") && calculator.getSymbol(displayed).equals("-")) { // if first < 0 and oper is "-"
-                if(calculator.getSymbol(displayed).equals("-")){
-                    secondOperand = calculator.getSecondDoubleForFirstNegative(displayed);
-                }
-            }
-            double res = calculator.calculate(calculator.getSymbol(displayed), serv.lastResult(), secondOperand);
+        if (percentageApply(displayed)) {
+            secondOperand = calculator.getSecondDouble(displayed);
+            double res = calculator.calcPercentage(calculator.getSymbol(displayed), serv.lastResult(), secondOperand);
             String result = String.valueOf(res);
             cp.setDisplayedValue(result);
             serv.clearOperands();
             serv.addFirstOperandToList(result);
-        }else {
+        } else {
             return;
         }
     }
 
-    private boolean equalApply(String str) {
+    private boolean percentageApply(String str) {
         if(str.isEmpty() || str.equals(".") || serv.lastResult().equals("null") ||
                 str.substring(str.length()-1, str.length()).equals(".")){
             return false;
-        } else if(str.substring(str.length()-2, str.length()).equals("--") ||
-                str.substring(str.length()-2, str.length()).equals("/-")){
-            JOptionPane.showConfirmDialog(null, "ERROR: Redundant sign \"-\"! Please, use BACKSPACE or input VALUE and try again!",
-                    "Error message", JOptionPane.PLAIN_MESSAGE);
-            return false;
-        } else if(noLastValue(str)){
+//        } else if(str.substring(str.length()-2, str.length()).equals("--") ||
+//                str.substring(str.length() - 2, str.length()).equals("/-")){
+//            JOptionPane.showConfirmDialog(null, "ERROR: Redundant sign \"-\"! Please, use BACKSPACE or input VALUE and try again!",
+//                    "Error message", JOptionPane.PLAIN_MESSAGE);
+//            return false;
+        } else if(noPercentValue(str)){
             JOptionPane.showConfirmDialog(null, "ERROR: Value missing! Please, use BACKSPACE or input VALUE and try again!",
                     "Error message", JOptionPane.PLAIN_MESSAGE);
             return false;
@@ -65,7 +57,7 @@ public class EqualControl implements ActionListener {
         return true;
     }
 
-    private boolean noLastValue(String str){
+    private boolean noPercentValue(String str){
         char signs[] = new char[]{'√', '%', '+', '*', '/', '-'};
         char strArr[] = str.substring(1, str.length()).toCharArray();
         for (char sign : signs) {
@@ -75,5 +67,4 @@ public class EqualControl implements ActionListener {
         }
         return false;
     }
-
 }
