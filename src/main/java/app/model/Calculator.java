@@ -9,16 +9,13 @@ public class Calculator {
     public Calculator(){}
 
     public String getFirstDouble(String jtfDisplayed){
-        //System.out.println(jtfDisplayed.substring(0, jtfDisplayed.length() - 1));
         String str = jtfDisplayed.substring(0, jtfDisplayed.length() - 1);
         for (String s : oper) {
             if(str.substring(str.length() - 1, str.length()).equals(s)){
                 str = str.substring(0, str.length() - 1);
             }
         }
-        System.out.println("firstDouble = " + str);
         return str;
-        //return jtfDisplayed.substring(0, jtfDisplayed.length() - 1);
     }
 
     public String getSecondDouble(String jtfDisplayed){
