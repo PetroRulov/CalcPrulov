@@ -120,7 +120,7 @@ public class CalcPanel {
 
         memory = new JTextField();
         memory.setFont(new Font("Garamond", Font.BOLD, 15));
-        memory.setForeground(greenColor);
+        memory.setForeground(Color.WHITE);
         memory.setHorizontalAlignment(JTextField.CENTER);
         memory.setEditable(false);
         memory.setBackground(memoryColor);
@@ -318,12 +318,14 @@ public class CalcPanel {
     }
 
     public void setMemory(String str){
+        getMemory().setBackground(memoryColor);
         getMemory().setFont(new Font("Garamond", Font.BOLD, 18));
         getMemory().setForeground(ceC);
         getMemory().setText("M: " + str);
     }
 
     public void clearMemory(){
+        getMemory().setBackground(Color.YELLOW);
         getMemory().setFont(new Font("Garamond", Font.BOLD, 15));
         getMemory().setForeground(greenColor);
         getMemory().setText("M: Empty ");
