@@ -38,9 +38,9 @@ public class EqualControl implements ActionListener {
                     !calculator.getSymbol(displayed).equals("-")){                                // if first > 0 || if first < 0 and operant not "-"
                 secondOperand = calculator.getSecondDouble(displayed);
             }else if(serv.lastResult().substring(0, 1).equals("-") && calculator.getSymbol(displayed).equals("-")) { // if first < 0 and oper is "-"
-                if(calculator.getSymbol(displayed).equals("-")){
+                //if(calculator.getSymbol(displayed).equals("-")){
                     secondOperand = calculator.getSecondDoubleForFirstNegative(displayed);
-                }
+                //}
             }
             double res = calculator.calculate(calculator.getSymbol(displayed), serv.lastResult(), secondOperand);
             String result = String.valueOf(res);
@@ -59,18 +59,14 @@ public class EqualControl implements ActionListener {
             return false;
         } else if(str.substring(str.length()-2, str.length()).equals("--") ||
                 str.substring(str.length()-2, str.length()).equals("/-")){
-            JOptionPane.showConfirmDialog(null, "ERROR: Redundant sign \"-\"! Please, use BACKSPACE or input VALUE and try again!",
-                    "Error message", JOptionPane.PLAIN_MESSAGE);
             return false;
-        } else if(noLastValue(str)){
-            JOptionPane.showConfirmDialog(null, "ERROR: Value missing! Please, use BACKSPACE or input VALUE and try again!",
-                    "Error message", JOptionPane.PLAIN_MESSAGE);
+        } else if(noSecondArgument(str) || noSymbols(str)){
             return false;
         }
         return true;
     }
 
-    private boolean noLastValue(String str){
+    private boolean noSecondArgument(String str){
         char signs[] = new char[]{'√', '%', '+', '*', '/', '-'};
         char strArr[] = str.substring(1, str.length()).toCharArray();
         for (char sign : signs) {
@@ -81,4 +77,20 @@ public class EqualControl implements ActionListener {
         return false;
     }
 
+    private boolean noSymbols(String str){
+        char signs[] = new char[]{'√', '%', '+', '*', '/', '-'};
+        char strArr[] = str.substring(1, str.length()).toCharArray();
+        int count = 0;
+        for (char sign : signs) {
+            for (char ch : strArr) {
+                if(ch==sign){
+                    count++;
+                }
+            }
+        }
+        if(count != 0){
+            return false;
+        }
+        return true;
+    }
 }

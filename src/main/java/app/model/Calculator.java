@@ -15,7 +15,11 @@ public class Calculator {
                 str = str.substring(0, str.length() - 1);
             }
         }
-        return str;
+        if(isDigit(str)){
+            return str;
+        }else{
+            return str.substring(0, str.length() - 1);
+        }
     }
 
     public String getSecondDouble(String jtfDisplayed){
@@ -98,6 +102,15 @@ public class Calculator {
             result = one / (one / 100 * two);
         }
         return result;
+    }
+
+    private boolean isDigit(String s) throws NumberFormatException {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
 }

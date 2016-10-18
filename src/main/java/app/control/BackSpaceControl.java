@@ -36,7 +36,7 @@ public class BackSpaceControl implements ActionListener {
 
     private void checkDisplayed() {
         displayed = cp.getWindowText();
-        if(cp.getWindowText().length() > 1){
+        if(displayed.length() > 1){
             String str = calculator.getFirstDouble(displayed);
             serv.addFirstOperandToList(str);
         }

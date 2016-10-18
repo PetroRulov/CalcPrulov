@@ -56,7 +56,7 @@ public class MinusControl implements ActionListener {
             if (str.length() ==1 && str.equals(".") || str.length() ==1 && str.equals("-")) {
                 return false;
             } else{
-                if (hasMinus(str) || hasOtherSymbols(str)){
+                if (hasMinus(str)){
                     return false;
                 }
             }
@@ -64,25 +64,7 @@ public class MinusControl implements ActionListener {
         return true;
     }
 
-    private boolean hasOtherSymbols(String str){
-        char signs[] = new char[]{'√', '%', '+', '-', '*', '/'};
-        char strArr[] = str.substring(1, str.length()).toCharArray();
-        int count = 0;
-        for (int i = 0; i < strArr.length; i++) {
-            for (char sign : signs) {
-                if (strArr[i] == sign) {
-                    count++;
-                }
-            }
-        }
-        if(count != 0){
-            return true;
-        }
-        return false;
-    }
-
     private boolean hasMinus(String str) {
-        if(str.equals(".") || str.equals("-") ) return false;
         char signMinus = '-';
         char strArr[] = str.substring(1, str.length()).toCharArray();
         int count = 0;
