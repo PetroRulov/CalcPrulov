@@ -27,18 +27,18 @@ public class BackSpaceControl implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         displayed = cp.getWindowText();
-        cp.setDisplayedValue(displayed.substring(0, displayed.length() - 1));
+        if(!displayed.isEmpty()){
+            cp.setDisplayedValue(displayed.substring(0, displayed.length() - 1));
+        }
         serv.clearOperands();
         checkDisplayed();
     }
 
     private void checkDisplayed() {
-        System.out.println(cp.getWindowText());
         displayed = cp.getWindowText();
         if(cp.getWindowText().length() > 1){
             String str = calculator.getFirstDouble(displayed);
             serv.addFirstOperandToList(str);
         }
-
     }
 }

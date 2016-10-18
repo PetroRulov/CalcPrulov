@@ -25,6 +25,7 @@ public class MRecallControl implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if(serv.getMemoryNumber() == null) return;
             displayed = cp.getWindowText();
             cp.setDisplayedValue(displayed + serv.getMemoryNumber());
             cp.setWriterText(displayed + serv.getMemoryNumber());
