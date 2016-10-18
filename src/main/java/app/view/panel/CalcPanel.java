@@ -318,11 +318,13 @@ public class CalcPanel {
     }
 
     public void setMemory(String str){
+        getMemory().setFont(new Font("Garamond", Font.BOLD, 18));
         getMemory().setForeground(ceC);
         getMemory().setText("M: " + str);
     }
 
     public void clearMemory(){
+        getMemory().setFont(new Font("Garamond", Font.BOLD, 15));
         getMemory().setForeground(greenColor);
         getMemory().setText("M: Empty ");
     }
