@@ -120,10 +120,10 @@ public class CalcPanel {
 
         memory = new JTextField();
         memory.setFont(new Font("Garamond", Font.BOLD, 15));
-        memory.setForeground(Color.WHITE);
+        memory.setForeground(Color.BLUE);
         memory.setHorizontalAlignment(JTextField.CENTER);
         memory.setEditable(false);
-        memory.setBackground(memoryColor);
+        memory.setBackground(Color.YELLOW);
         memory.setText("M: Empty");
         calcPanel.add(memory, new GridBagConstraints(0, 3, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
 
@@ -251,7 +251,6 @@ public class CalcPanel {
         perc.setFont(new Font("Garamond", Font.BOLD, 20));
         perc.setForeground(Color.BLACK);
         calcPanel.add(perc, new GridBagConstraints(5, 3, 1, 1, 1, 0, GridBagConstraints.LAST_LINE_END, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
-        //perc.addActionListener(new OperationsControl(calculator, serv, this));
         perc.addActionListener(new PercentageControl(calculator, serv, this));
 
         minus = new JButton("-");
@@ -284,7 +283,6 @@ public class CalcPanel {
         symbolButtons.add(mult);
         symbolButtons.add(divid);
         symbolButtons.add(sqrt);
-        //symbolButtons.add(perc);
 
         return calcPanel;
     }

@@ -21,7 +21,6 @@ public class Calculator {
     public String getSecondDouble(String jtfDisplayed){
         int a = getSymbolIndex(jtfDisplayed);
         if(a > 0){
-            System.out.println(jtfDisplayed.substring(a + 1, jtfDisplayed.length()));
             return jtfDisplayed.substring(a + 1, jtfDisplayed.length());
         }else{
             return "0.0";
