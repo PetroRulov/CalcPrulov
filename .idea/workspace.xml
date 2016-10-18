@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1b5386d8-7554-4736-9c17-51be2a01feb0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/app/control/BackSpaceControl.java" afterPath="$PROJECT_DIR$/src/main/java/app/control/BackSpaceControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/app/control/EqualControl.java" afterPath="$PROJECT_DIR$/src/main/java/app/control/EqualControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/app/control/MinusControl.java" afterPath="$PROJECT_DIR$/src/main/java/app/control/MinusControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/app/model/Calculator.java" afterPath="$PROJECT_DIR$/src/main/java/app/model/Calculator.java" />
     </list>
     <ignored path="CalcPrulov.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -945,7 +941,7 @@
       <workItem from="1476796397312" duration="248000" />
       <workItem from="1476796723590" duration="1133000" />
       <workItem from="1476797953837" duration="249000" />
-      <workItem from="1476806173434" duration="7192000" />
+      <workItem from="1476806173434" duration="7218000" />
     </task>
     <task id="LOCAL-00001" summary="second commit 15102016-1">
       <created>1476620861244</created>
@@ -1031,11 +1027,18 @@
       <option name="project" value="LOCAL" />
       <updated>1476798030646</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="11th commit 18102016-6">
+      <created>1476814467383</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1476814467383</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87673000" />
+    <option name="totallyTimeSpent" value="87699000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="745" extended-state="0" />
@@ -1088,7 +1091,8 @@
     <MESSAGE value="7th commit 18102016-2" />
     <MESSAGE value="8th commit 18102016-3" />
     <MESSAGE value="10th commit 18102016-5" />
-    <option name="LAST_COMMIT_MESSAGE" value="10th commit 18102016-5" />
+    <MESSAGE value="11th commit 18102016-6" />
+    <option name="LAST_COMMIT_MESSAGE" value="11th commit 18102016-6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
