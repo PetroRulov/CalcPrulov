@@ -87,6 +87,7 @@ public class CalcPanel {
         calcPanel.add(picture, new GridBagConstraints(0, 0, 0, 1, 0, 0, GridBagConstraints.PAGE_START, GridBagConstraints.BOTH, new Insets(0, 20, 0, 0), 0, 0));
 
         writer = new JTextArea();
+        writer.setBackground(memoryColor);
         writer.setFont(new Font("Arial", Font.PLAIN, 20));
         writer.setForeground(Color.DARK_GRAY);
         writer.setEditable(false);
