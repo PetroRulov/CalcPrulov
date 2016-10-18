@@ -23,6 +23,7 @@ public class CalcPanel {
     private java.util.List<JButton> symbolButtons;
     private Color ceC;
     private Color greenColor;
+    private Color memoryColor;
 
     //buttons
     private JTextArea writer;
@@ -61,7 +62,8 @@ public class CalcPanel {
         digitButtons = new ArrayList<>();
         symbolButtons = new ArrayList<>();
         this.ceC = new Color(180,0,50);
-        this.greenColor = new Color(0, 210, 0);
+        this.greenColor = new Color(0, 255, 0);
+        this.memoryColor = new Color(243, 220, 200);
         this.calcPanel = createCalcPanel();
     }
 
@@ -73,7 +75,7 @@ public class CalcPanel {
         calcPanel.setFont(new Font("Garamond", Font.BOLD, 20));
 
         Border matte = BorderFactory.createMatteBorder(3, 3, 3, 3, Color.BLUE);
-        String head = "CALCULATOR Model J-PEVLAR V.2.01, © Petro Rulov Laboratory";
+        String head = "CALCULATOR Model J-PEVLAR V.2.01, ©Petro Rulov";
         Border titled = BorderFactory.createTitledBorder(matte, head, TitledBorder.CENTER, TitledBorder.CENTER, new Font("Garamond", Font.BOLD, 10), Color.ORANGE);
         calcPanel.setBorder(titled);
 
@@ -121,6 +123,7 @@ public class CalcPanel {
         memory.setForeground(greenColor);
         memory.setHorizontalAlignment(JTextField.CENTER);
         memory.setEditable(false);
+        memory.setBackground(memoryColor);
         memory.setText("M: Empty");
         calcPanel.add(memory, new GridBagConstraints(0, 3, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 10), 0, 0));
 
@@ -141,6 +144,7 @@ public class CalcPanel {
         onAC.setForeground(Color.BLACK);
         onAC.setBackground(Color.ORANGE);
         calcPanel.add(onAC, new GridBagConstraints(0, 6, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(10, 10, 0, 5), 0, 0));
+        onAC.addActionListener(new CEControl(serv, this));
 
         m1 = new JButton("1");
         m1.setFont(new Font("Garamond", Font.BOLD, 20));
